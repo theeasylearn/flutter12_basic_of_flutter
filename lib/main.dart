@@ -2,6 +2,7 @@ import 'package:basics_of_flutter/12_table_demo_1.dart';
 import 'package:basics_of_flutter/13_wrap_widget_demo.dart';
 import 'package:flutter/material.dart';
 import '14_listview_demo_1.dart';
+import '15_listview_demo_2.dart';
 import '1_center_container_text.dart';
 import '2_container.dart';
 import '3_align_demo.dart';
@@ -16,6 +17,6 @@ import '4_row_demo_1.dart';
 import '5_row_demo_2.dart';
 import '6_column_demo_1.dart';
 void main() {
-  ListViewExample1  screen = new ListViewExample1();
+  ListViewDemo2  screen = new ListViewDemo2();
   runApp(screen);
 }
