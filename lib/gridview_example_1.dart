@@ -72,35 +72,49 @@ class GridviewExample1 extends StatelessWidget {
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Lucknow_Super_Giants_IPL_Logo.svg/500px-Lucknow_Super_Giants_IPL_Logo.svg.png"
     }
   ];
-
-  String imgURL = "https://en.wikipedia.org/wiki/Lucknow_Super_Giants";
+  String imgURL = "http://picsum.photos/300";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Grid View Example 1"),
-          ),
-          body: Card(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Grid View Example 1"),
+        ),
+        body: SizedBox(
+          height: 150,
+          child: Card(
             elevation: 10,
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.network(imgURL,fit: BoxFit.cover,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text("Lucknow Super Giants"),
-                      Text("Rishabh Pant"),
-                      Text("Awaiting"),
-                      Text("Ekana Cricket Stadium, Lucknow")
-                    ],
-                  )
-                ],
+              children: [
+                SizedBox(
+                  width: 120,
+                  height: double.infinity,
+                  child: Image.network(
+                    imgURL,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text("Lucknow Super Giants",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text("Captain: Rishabh Pant"),
+                        Text("Status: Awaiting"),
+                        Text("Ekana Cricket Stadium, Lucknow"),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
 }
