@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class GridviewExample1 extends StatelessWidget {
-  final List<Map<String, dynamic>> iplTeams = [
+  List<Map<String, dynamic>> iplTeams = [
     {
       "team": "Chennai Super Kings",
       "homeGround": "MA Chidambaram Stadium, Chennai",
@@ -72,35 +72,57 @@ class GridviewExample1 extends StatelessWidget {
       "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a9/Lucknow_Super_Giants_IPL_Logo.svg/500px-Lucknow_Super_Giants_IPL_Logo.svg.png"
     }
   ];
-
-  String imgURL = "https://en.wikipedia.org/wiki/Lucknow_Super_Giants";
+  String imgURL = "http://picsum.photos/300";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("Grid View Example 1"),
-          ),
-          body: Card(
-            elevation: 10,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.network(imgURL,fit: BoxFit.cover,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Grid View Example 1"),
+        ),
+        body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,
+                mainAxisSpacing: 10, crossAxisSpacing: 10),
+            itemBuilder: (item,index){
+                return displayTeam(index);
+            },itemCount: iplTeams.length,),
+      ),
+    );
+  }
+
+  Widget displayTeam(int index) {
+      return SizedBox(
+        height: 200,
+        child: Card(
+          elevation: 10,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 60,
+                height: double.infinity,
+                child: Image.network(
+                  imgURL,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Lucknow Super Giants"),
-                      Text("Rishabh Pant"),
-                      Text("Awaiting"),
-                      Text("Ekana Cricket Stadium, Lucknow")
+                      Text(iplTeams[index]['team'].toString()),
+                      Text(iplTeams[index]['captain'].toString()),
+                      Text(iplTeams[index]['trophies'].toString() + " wins"),
+                      Text(iplTeams[index]['homeGround'].toString()),
                     ],
-                  )
-                ],
-            ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-    );
+      );
   }
 }
