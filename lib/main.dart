@@ -18,7 +18,9 @@ import '4_row_demo_1.dart';
 import '5_row_demo_2.dart';
 import '6_column_demo_1.dart';
 import 'gridview_example_1.dart';
+import 'media_query_1.dart';
+
 void main() {
-  GridviewExample1  screen = new GridviewExample1();
-  runApp(screen);
+  MediaQuery1  screen = new MediaQuery1();
+  runApp(MaterialApp(home: screen,));
 }

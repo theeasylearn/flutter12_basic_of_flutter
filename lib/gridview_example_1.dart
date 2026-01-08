@@ -89,10 +89,9 @@ class GridviewExample1 extends StatelessWidget {
       ),
     );
   }
-
   Widget displayTeam(int index) {
       return SizedBox(
-        height: 200,
+        height: 220,
         child: Card(
           elevation: 10,
           child: Row(
@@ -101,7 +100,7 @@ class GridviewExample1 extends StatelessWidget {
                 width: 60,
                 height: double.infinity,
                 child: Image.network(
-                  imgURL,
+                  iplTeams[index]['logo'].toString(),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -115,7 +114,7 @@ class GridviewExample1 extends StatelessWidget {
                       Text(iplTeams[index]['team'].toString()),
                       Text(iplTeams[index]['captain'].toString()),
                       Text(iplTeams[index]['trophies'].toString() + " wins"),
-                      Text(iplTeams[index]['homeGround'].toString()),
+                      FittedBox(child: Text(iplTeams[index]['homeGround'].toString()),),
                     ],
                   ),
                 ),
