@@ -14,10 +14,8 @@ class MediaQuery1 extends StatelessWidget {
       body: DisplayUI(),
     );
   }
-
   Widget DisplayUI() {
     double containerHeight = (height / 4) - 22;
-
     if(height>width)
     {
       return Column(
@@ -60,25 +58,25 @@ class MediaQuery1 extends StatelessWidget {
               children: [
               Container(
               height: containerHeight,
-                width: double.infinity,
+                width: width * 0.20,
                 color: Colors.yellow,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.20,
                 color: Colors.red,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.20,
                 color: Colors.green,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.20,
                 color: Colors.blue,
               )
             ],
@@ -88,25 +86,25 @@ class MediaQuery1 extends StatelessWidget {
                 children: [
                 Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.78,
                 color: Colors.yellow,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.78,
                 color: Colors.red,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.78,
                 color: Colors.green,
               ),
               SizedBox(height: 10,),
               Container(
                 height: containerHeight,
-                width: double.infinity,
+                width: width * 0.78,
                 color: Colors.blue,
               )
             ],
