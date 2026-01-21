@@ -24,5 +24,6 @@ import '20_media_query_1.dart';
 
 void main() {
   SliverDemo1  screen = new SliverDemo1();
-  runApp(MaterialApp(home: screen,));
+  runApp(MaterialApp(home: screen,
+    debugShowCheckedModeBanner: false,));
 }
