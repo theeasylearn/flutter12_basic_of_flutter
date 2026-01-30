@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:just_audio/just_audio.dart';
 class ButtonDemo extends StatelessWidget {
   int count = 0; //instance variable
+  AudioPlayer player = AudioPlayer();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +42,19 @@ class ButtonDemo extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               IconButton(onPressed: () {
-
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Hello! This is a simple Snackbar'),
+                    duration: Duration(days: 1),
+                    showCloseIcon: true,
+                  ),
+                );
               }, icon: Icon(Icons.message)),
+              SizedBox(height: 10,),
+              TextButton(onPressed: ()  async {
+                player.setAsset('sound/bell.mp3');              // Schemes: (https: | file: | asset: )
+                player.play();
+              }, child: Text("Play sound"))
             ],
         ),
       ),
