@@ -39,6 +39,10 @@ dependencies:
   fluttertoast: ^8.2.14
   just_audio: ^0.9.46
   vibration: ^3.1.5
+  flutter_local_notifications: ^19.5.0
+  torch_light: ^1.1.0
+  image_picker: ^1.1.2
+  location: ^7.0.1
 
 dev_dependencies:
   flutter_test:
