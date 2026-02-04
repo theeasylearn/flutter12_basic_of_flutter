@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:torch_light/torch_light.dart';
 import 'package:location/location.dart';
 
@@ -15,8 +18,27 @@ class _MultipleConceptState extends State<MultipleConcept> {
 
   LocationData? _locationData;
   PermissionStatus _permissionGranted = PermissionStatus.denied;
-
+  final ImagePicker _picker = ImagePicker();
+  XFile? _pickedImage; // Modern way (recommended)
   // Optional: you can call this in initState if you want to check permission early
+  Future<void> _pickImageFromGallery() async {
+    try {
+      final XFile? image = await _picker.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (image != null) {
+        setState(() {
+          _pickedImage = image;
+        });
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error picking image: $e')),
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -100,11 +122,16 @@ class _MultipleConceptState extends State<MultipleConcept> {
       });
     }
   }
+  ImageProvider get profileImageProvider {
+    if (_pickedImage != null) {
+      return FileImage(File(_pickedImage!.path));
+    }
+    return const AssetImage('assets/images/username.png');
+  }
 
   @override
   Widget build(BuildContext context) {
     // You can show real image later when camera/gallery is implemented
-    final imageProvider = null; // ← replace with real provider when ready
 
     return Scaffold(
       appBar: AppBar(
@@ -124,13 +151,13 @@ class _MultipleConceptState extends State<MultipleConcept> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Latitude: ${_locationData!.latitude?.toStringAsFixed(6)}\n"
-                    "Longitude :${_locationData!.longitude?.toStringAsFixed(6)}",
+                "Latitude: ${_locationData!.latitude}\n" +  "Longitude : ${_locationData!.longitude} \n" +
+                    "Altitude :${_locationData!.altitude} \n" + " Accuracy : ${_locationData!.accuracy}",
                 textAlign: TextAlign.center,
               ),
             ),
           Ink.image(
-            image: imageProvider ?? const AssetImage('images/username.png'),
+            image: profileImageProvider,
             height: 200,
             width: 200,
             fit: BoxFit.cover,
@@ -152,10 +179,7 @@ class _MultipleConceptState extends State<MultipleConcept> {
               break;
 
             case 1: // Gallery
-            // TODO: open gallery (e.g. image_picker)
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Gallery - not implemented yet")),
-              );
+              _pickImageFromGallery();
               break;
 
             case 2: // Camera
